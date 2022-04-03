@@ -1,0 +1,38 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext {
+    kotlinxVersion = '1.4.2'
+
+    daggerVersion = '2.40.5'
+
+    gsonConverterVersion = '2.3.0'
+    gsonVersion = '2.8.5'
+
+    retrofit2Version = '2.9.0'
+
+    navigationVersion = '2.3.5'
+
+    googleDevLibraries = [
+            dagger            : [group: 'com.google.dagger', name: 'dagger', version: daggerVersion],
+            daggerCompiler    : [group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion],
+            gson              : [group: 'com.google.code.gson', name: 'gson', version: gsonVersion],
+            gsonConverter     : [group: 'com.squareup.retrofit2', name: 'converter-gson', version: gsonConverterVersion],
+            navigationFragment: [group: 'androidx.navigation', name: 'navigation-fragment-ktx', version: navigationVersion],
+            navigationUI      : [group: 'androidx.navigation', name: 'navigation-ui-ktx', version: navigationVersion]
+    ]
+
+    devLibraries = [
+            retrofit2        : [group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofit2Version],
+            coroutines       : [group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: kotlinxVersion],
+            coroutinesAndroid: [group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-android', version: kotlinxVersion],
+    ]
+
+    appDependencies = [
+            [configuration: "api", dependency: googleDevLibraries.dagger],
+            [configuration: "kapt", dependency: googleDevLibraries.daggerCompiler],
+            [configuration: "api", dependency: devLibraries.retrofit],
+            [configuration: "api", dependency: googleDevLibraries.gson],
+            [configuration: "api", dependency: googleDevLibraries.gsonConverter],
+            [configuration: "api", dependency: devLibraries.coroutines],
+            [configuration: "api", dependency: devLibraries.coroutinesAndroid],
+    ]
+}
